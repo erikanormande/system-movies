@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Cadastro de Filme</title>
+    <title>Movie Registration</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
@@ -100,7 +100,7 @@
             text-decoration: underline;
         }
 
-        /* Responsividade */
+        /* Responsiveness */
         @media (max-width: 768px) {
             form {
                 grid-template-columns: 1fr;
@@ -118,60 +118,60 @@
 </head>
 <body>
 <div class="container">
-    <h2 th:text="${filme.id != null ? 'Editar Filme' : 'Novo Filme'}"></h2>
+    <h2 th:text="${filme.id != null ? 'Edit Movie' : 'New Movie'}"></h2>
 
     <form th:action="@{/filmes}" th:object="${filme}" method="post">
         <input type="hidden" th:field="*{id}"/>
 
         <div class="form-group">
-            <label>Título:</label>
-            <input th:field="*{titulo}" placeholder="Digite o título do filme"/>
+            <label>Title:</label>
+            <input th:field="*{titulo}" placeholder="Enter movie title"/>
         </div>
 
         <div class="form-group">
-            <label>Ano de Exibição:</label>
-            <input th:field="*{anoExibicao}" type="number" placeholder="Ano de exibição"/>
+            <label>Release Year:</label>
+            <input th:field="*{anoExibicao}" type="number" placeholder="Release year"/>
         </div>
 
         <div class="form-group">
-            <label>Gênero:</label>
-            <input th:field="*{genero}" placeholder="Gênero do filme"/>
+            <label>Genre:</label>
+            <input th:field="*{genero}" placeholder="Movie genre"/>
         </div>
 
         <div class="form-group">
-            <label>País Produtores:</label>
-            <input th:field="*{paisProdutores}" placeholder="País(es) produtor(es)"/>
+            <label>Producer Country:</label>
+            <input th:field="*{paisProdutores}" placeholder="Producer country(ies)"/>
         </div>
 
         <div class="form-group">
-            <label>Nacionalidade:</label>
-            <input th:field="*{nacionalidade}" placeholder="Nacionalidade do filme"/>
+            <label>Nationality:</label>
+            <input th:field="*{nacionalidade}" placeholder="Movie nationality"/>
         </div>
 
         <div class="form-group">
-            <label>Distribuidora:</label>
-            <input th:field="*{distribuidora}" placeholder="Distribuidora do filme"/>
+            <label>Distributor:</label>
+            <input th:field="*{distribuidora}" placeholder="Movie distributor"/>
         </div>
 
         <div class="form-group">
-            <label>Origem Distribuidora:</label>
-            <input th:field="*{origemDistribuidora}" placeholder="Origem da distribuidora"/>
+            <label>Distributor Origin:</label>
+            <input th:field="*{origemDistribuidora}" placeholder="Distributor origin"/>
         </div>
 
         <div class="form-group">
-            <label>Público de Exibição:</label>
-            <input th:field="*{publicoExibicao}" type="number" placeholder="Número de espectadores"/>
+            <label>Attendance:</label>
+            <input th:field="*{publicoExibicao}" type="number" placeholder="Number of attendees"/>
         </div>
 
         <div class="form-group full-width">
-            <label>Renda de Exibição:</label>
-            <input th:field="*{rendaExibicao}" type="number" step="0.01" placeholder="Renda em reais"/>
+            <label>Box Office Revenue:</label>
+            <input th:field="*{rendaExibicao}" type="number" step="0.01" placeholder="Revenue in currency"/>
         </div>
 
-        <button type="submit">Salvar</button>
+        <button type="submit">Save</button>
     </form>
 
-    <a class="back-link" th:href="@{/filmes}">Voltar para a lista</a>
+    <a class="back-link" th:href="@{/filmes}">Back to list</a>
 </div>
 </body>
 </html>

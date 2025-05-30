@@ -31,7 +31,7 @@ public class LoginController {
             session.setAttribute("usuario", usuario.get());
             return "redirect:/filmes";
         }
-        model.addAttribute("erro", "Usuário ou senha inválidos");
+        model.addAttribute("erro", "Invalid username or password\n");
         return "login";
     }
 

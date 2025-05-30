@@ -30,7 +30,7 @@ public class ImportacaoService {
             InputStream is = getClass().getResourceAsStream("/data/listagem-de-filmes-brasileiros-e-estrangeiros-exibidos-2009-a-2023.csv");
 
             if (Objects.isNull(is)) {
-                throw new RuntimeException("Arquivo CSV não encontrado.");
+                throw new RuntimeException("CSV file not found.");
             }
 
             Reader reader = new InputStreamReader(is);
@@ -73,7 +73,7 @@ public class ImportacaoService {
 
             csvReader.close();
         } catch (Exception e) {
-            throw new RuntimeException("Erro ao importar CSV: " + e.getMessage(), e);
+            throw new RuntimeException("Error importing CSV: " + e.getMessage(), e);
         }
     }
 

@@ -17,6 +17,6 @@ public class ImportacaoController {
     @PostMapping("/importar-csv")
     public ResponseEntity<String> importarCsv() {
         importacaoService.importarCsv();
-        return ResponseEntity.ok("Importação realizada com sucesso!");
+        return ResponseEntity.ok("Import successful");
     }
 }
