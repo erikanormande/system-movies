@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Filmes</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            padding: 30px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 28px;
+        }
+
+        .action-links {
+            margin-bottom: 25px;
+            text-align: right;
+        }
+
+        .action-links a {
+            display: inline-block;
+            padding: 8px 15px;
+            margin-left: 10px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .action-links a:first-child {
+            margin-left: 0;
+        }
+
+        .new-film {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .new-film:hover {
+            background-color: #218838;
+        }
+
+        .logout {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .logout:hover {
+            background-color: #c82333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        th {
+            background-color: #2c3e50;
+            color: white;
+            font-weight: 500;
+            position: sticky;
+            top: 0;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        tr:hover {
+            background-color: #f1f3f5;
+        }
+
+        .actions a {
+            display: inline-block;
+            padding: 5px 10px;
+            margin-right: 8px;
+            text-decoration: none;
+            border-radius: 3px;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .edit {
+            background-color: #17a2b8;
+            color: white;
+        }
+
+        .edit:hover {
+            background-color: #138496;
+        }
+
+        .delete {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .delete:hover {
+            background-color: #c82333;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+
+            .action-links {
+                text-align: center;
+                margin-bottom: 15px;
+            }
+
+            .action-links a {
+                display: block;
+                margin: 5px 0;
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Filmes</h2>
+
+    <div class="action-links">
+        <a class="new-film" th:href="@{/filmes/novo}">Novo Filme</a>
+        <a class="logout" th:href="@{/logout}">Logout</a>
+    </div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Título</th>
+            <th>Ano</th>
+            <th>Gênero</th>
+            <th>Nacionalidade</th>
+            <th>País Produtores</th>
+            <th>Distribuidora</th>
+            <th>Origem Distribuidora</th>
+            <th>Público de Exibição</th>
+            <th>Renda de Exibição</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="filme : ${filmes}">
+            <td th:text="${filme.titulo}"></td>
+            <td th:text="${filme.anoExibicao}"></td>
+            <td th:text="${filme.genero}"></td>
+            <td th:text="${filme.nacionalidade}"></td>
+            <td th:text="${filme.paisProdutores}"></td>
+            <td th:text="${filme.distribuidora}"></td>
+            <td th:text="${filme.origemDistribuidora}"></td>
+            <td th:text="${filme.publicoExibicao != null ? filme.publicoExibicao : '-'}"></td>
+            <td th:text="${filme.rendaExibicao != null ? #numbers.formatDecimal(filme.rendaExibicao, 2, 'COMMA', 2, 'POINT') : '-'}"></td>
+            <td class="actions">
+                <a class="edit" th:href="@{'/filmes/editar/' + ${filme.id}}">Editar</a>
+                <a class="delete" th:href="@{'/filmes/excluir/' + ${filme.id}}">Excluir</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
